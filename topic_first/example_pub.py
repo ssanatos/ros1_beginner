@@ -9,17 +9,18 @@ def fun():
 
 if __name__ == "__main__":
     rospy.init_node('sample_pub')
+    # rospy.init_node('sample_pub_02')
     # 메시지 키
     pub = rospy.Publisher('hello', String, queue_size = 10)
-    pub02 = rospy.Publisher('hello_02', String, queue_size = 10)
-
+    # pub02 = rospy.Publisher('hello_02', String, queue_size = 10)
+    
     rate = rospy.Rate(10)
     while not rospy.is_shutdown():
         # 메시지 내용
         str = "hell_publisher : %s" % rospy.get_time()
-        str2 = "GO GO TESLA : %s" % rospy.get_time()
+        # str2 = "GO GO TESLA : %s" % rospy.get_time()
         pub.publish(str)
-        pub02.publish(str2)
+        # pub02.publish(str2)
         rate.sleep()
     pass
 
