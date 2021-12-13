@@ -13,15 +13,12 @@ def fun_callback(msg):
 
 if __name__ == "__main__":
     rospy.init_node('sample_pub') # 이 파일의 이름
-    # 메시지 키
-    rospy.Subscriber('exception', String, callback=fun_callback)
-    rospy.spin() 
-    
     # rospy.init_node('sample_pub_02')
     # 메시지 키
     pub = rospy.Publisher('hello', String, queue_size = 10)
     # pub02 = rospy.Publisher('hello_02', String, queue_size = 10)
-    
+
+    rospy.Subscriber('exception', String, callback=fun_callback)
     rate = rospy.Rate(10)
     while not rospy.is_shutdown():
         # 메시지 내용
