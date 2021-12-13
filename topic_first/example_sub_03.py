@@ -6,7 +6,8 @@ from std_msgs.msg import String
 def fun_callback(msg):
     rospy.loginfo('sub03%s',msg.data)
     pub = rospy.Publisher('exception', String, queue_size = 10)
-    pub.publish(str.data)
+    str = "sub03 : %s" % rospy.get_time()
+    pub.publish(str)
     return
 
 if __name__ == "__main__":
