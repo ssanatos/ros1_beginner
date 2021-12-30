@@ -21,7 +21,7 @@ if __name__ == "__main__":
     angluar_speed = speed*2*3.14/180
     relative_angle = angle*2*3.14/180 
 
-    time0 = rospy.Time.now().to_sec()
+    time0 = rospy.Time.now().to_sec() 
     current = 0
     twist.angular.z = angluar_speed
     while current < relative_angle:

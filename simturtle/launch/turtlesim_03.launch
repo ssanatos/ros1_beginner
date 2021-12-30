@@ -1,0 +1,15 @@
+<launch>
+<!-- arg를 넣어주면 런치파일 실행할 때 arg를 지정할 수 있음 -->
+    <arg name="group01_name" />
+    <group ns="$(arg group01_name)">
+        <node pkg="turtlesim" type="turtlesim_node" name="turtlesim_node"/>
+        <node pkg="turtlesim" type="turtle_teleop_key" name="turtle_teleop_key_node" output="screen" />
+
+    </group>
+
+    <group ns="group02">
+        <node pkg="turtlesim" type="turtlesim_node" name="turtlesim_node"/>
+        <node pkg="turtlesim" type="turtle_teleop_key" name="turtle_teleop_key_node" output="screen" />
+
+    </group>
+</launch>
