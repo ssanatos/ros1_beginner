@@ -1,8 +1,7 @@
-
-  
-#!/usr/bin/env python
-
+#! /usr/bin/env python
 import rospy
+# custom service messsage
+from turtlebot_pkg.srv import rotateResult, rotateResultResponse
 from geometry_msgs.msg import Twist
 #PI = 3.1415926535897
 toRAD = 0.0174533
@@ -38,17 +37,27 @@ def rotate():
     pub.publish(msg)
     rospy.sleep(0.001)
         
-    while(rospy.Time.now() < time2end):
+    while rospy.Time.now() < time2end :
         pass    
         
     msg.angular.z = 0
     pub.publish(msg)
-    
+
+
+def fun_callback(req):
+    # rospy.loginfo('%s' % (req.scan_sequence))
+    # req.scan_sequence srv에 만들어놓은 변수 그대로.
+    print('scan : ', req.scan_sequence)
+    success = True
+    message = 'This is success'
+    rotate()
+    return rotateResultResponse(success, message)
 
 if __name__ == '__main__':
-    try:
-        rotate()
-        rospy.spin()
-        
-    except rospy.ROSInterruptException:
-        pass
+    # server 선언
+    rospy.init_node('rotate_server')
+    # server 기다리기
+    rospy.Service('rotate_result',rotateResult,fun_callback)
+
+    rospy.spin()
+    pass
